@@ -13,6 +13,10 @@ page functionality.
 
 The system was tested and run in Raspberry Pi 4 hardware. 
 
+
+https://github.com/user-attachments/assets/15c3b5ee-3cdd-4bd7-9b46-1b01d723f62a
+
+
 <video src="tharadi-demo.mp4" width="320" height="240" controls></video>
 
 ## Dependancies
