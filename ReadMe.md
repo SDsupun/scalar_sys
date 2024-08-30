@@ -44,3 +44,6 @@ Use below commands to create a standalone executable using pyinstaller.
 ` python compile.py build_ext --inplace`
 
 ` pyinstaller main.spec -y --onefile`
+
+> [!NOTE]  
+> Use 'admin' as the default login for the first time login.
