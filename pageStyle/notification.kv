@@ -1,0 +1,11 @@
+<Notification>:
+    notification: notification
+    popup_ok_button: popup_ok_button
+    GridLayout:
+        id: popup_ok_button
+        cols: 1
+        pos_hint:{"x":0.25, "y":0.1}
+        size_hint: 0.5, 0.8
+        Label:
+            id: notification
+            text: root.notification.text

@@ -1,0 +1,349 @@
+<SecondWindow>:
+    name: 'second_page'
+
+    side_sel_grid: side_sel_grid
+    text_in_grid: text_in_grid
+
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: (44/255, 112/255, 222/255, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            size_hint_y: 0.1
+            cols: 3
+            padding: 3
+            Image:
+                size_hint_x: 0.1
+                source: 'pageStyle/icon_2/logo-2.png'
+            Label:
+                text: 'Welcome'
+                font_size: self.height * 0.5
+                font_name: 'nirmalab.ttf'
+            Button:
+                size_hint_x: 0.1
+                id: header_logout_button
+                background_normal: ''
+                background_color: (44/255, 112/255, 222/255, 1)
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = "login_page"
+                    root.manager.transition.direction = "right"
+                    root.manager.page_focus()
+                Image:
+                    source: 'pageStyle/icon_2/logout.png'
+                    y: self.parent.y + self.parent.height/20
+                    x: self.parent.x + self.parent.width/20 + self.parent.width * 0.1
+                    size: self.parent.width * 0.8, self.parent.height * 0.8
+
+        GridLayout:
+            cols: 2
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            SelectableGrid:
+                id: side_sel_grid
+                focus: False
+                cols: 1
+                size_hint_x: 0.2
+                padding: 5
+                Button:
+                    id: print_n_save_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Print & Save"
+                    on_release:
+                        root.print_ticket()
+                        root.save_ticket_test()
+                        root.clear_ticket()
+                    Image:
+                        source: 'pageStyle/icon_2/printer-2.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: save_only_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Save"
+                    on_release:
+                        root.save_ticket_test()
+                        root.clear_ticket()
+                    Image:
+                        source: 'pageStyle/icon_2/save.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: st_weight_cancel_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Clear"
+                    on_release:
+                        root.clear_ticket()
+                    Image:
+                        source: 'pageStyle/icon_2/clear.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: st_pg_back_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Back"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.root.current = "main_page"
+                        root.manager.transition.direction = "right"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/back.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+
+            GridLayout:
+                cols: 1
+                padding: 20
+                spacing: 5
+                Label:
+                    text: 'Second Weight'
+                    font_name: 'nirmala.ttf'
+                    font_size: self.height * 0.7
+                    color: 0, 0, 0, 1
+                    size_hint_y:0.1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 0.5
+                        Rectangle:
+                            pos: self.pos
+                            size: self.parent.width - 40, 2
+
+                GridLayout:
+                    cols: 4
+                    size_hint_y: 0.1
+                    focus: False
+                    spacing: 5
+                    padding: 10
+                    canvas.before:
+                        Color:
+                            rgba: (13/255, 120/255, 33/255, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        id: first_count_top_text
+                        text: "0"
+                        font_size: self.height * 0.7
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                    Label:
+                        id: second_count_top_text
+                        text: "0"
+                        font_size: self.height * 0.7
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                    Label:
+                        id: date_time_top_text
+                        text: "2020"
+                        font_size: self.height * 0.7
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                    Label:
+                        id: weight_top_text
+                        text: "45 kg"
+                        font_size: self.height * 0.7
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                GridLayout:
+                    cols: 2
+                    GridLayout:
+                        id: text_in_grid
+                        focus: False
+                        cols: 2
+                        spacing: 5
+                        padding: 10
+                        canvas.before:
+                            Color:
+                                rgba: (20/255, 128/255, 47/255, 1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: 'Vehicle No'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: vehicle_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.6
+                            on_text:
+                                root.lookup()
+                            on_text_validate:
+                                root.get_first_ticket_info()
+                                root.ids.operator_text.focus = True
+                        Label:
+                            text: 'Ticket No'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: ticket_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Time-1'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: datetime_1_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Time-2'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: datetime_2_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Customer'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: customer_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Product'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: product_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Plant No'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: plant_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: "Driver's Name"
+                            font_size: self.height * 0.6
+                        Label:
+                            id: driver_text
+                            text: ''
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Operator Name'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: operator_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.6
+                            on_text:
+                                self.text=self.text[:30] if len(self.text)>30 else self.text
+                            on_text_validate:
+                                root.ids.cx1_text.focus = True if (root.ids.cx1_text.opacity == 1) else False
+                                root.ids.side_sel_grid.focus = True if (root.ids.cx1_text.opacity == 0) else False
+                        Label:
+                            text: 'First Weight'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: first_weight_text
+                            bold: True
+                            text: ''
+                            font_size: self.height * 0.8
+                        Label:
+                            text: 'Second Weight'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: second_weight_text
+                            bold: True
+                            text: ''
+                            font_size: self.height * 0.8
+                        Label:
+                            id: cx1_name_text
+                            text: 'Custom1'
+                            font_size: self.height * 0.6
+                            opacity: 0
+                        TextInput:
+                            id: cx1_text
+                            text: ''
+                            font_size: self.height * 0.6
+                            opacity: 0
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            on_text:
+                                self.text=self.text[:30] if len(self.text)>30 else self.text
+                            on_text_validate:
+                                root.ids.cx2_text.focus = True if (root.ids.cx2_text.opacity == 1) else False
+                                root.ids.side_sel_grid.focus = True if (root.ids.cx2_text.opacity == 0) else False
+                        Label:
+                            id: cx2_name_text
+                            text: 'Custom2'
+                            font_size: self.height * 0.6
+                            opacity: 0
+                        TextInput:
+                            id: cx2_text
+                            text: ''
+                            font_size: self.height * 0.6
+                            opacity: 0
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            on_text:
+                                self.text=self.text[:30] if len(self.text)>30 else self.text
+                            on_text_validate:
+                                root.ids.side_sel_grid.focus = True
+
+                        Label:
+                            text: 'Net weight'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: net_weight_text
+                            bold: True
+                            text: '0'
+                            font_size: self.height * 0.8
+
+                    ScrollView:
+                        GridLayout:
+                            id: lookup_layout
+                            cols: 5
+                            size_hint_x: None
+                            size_hint_y: None
+                            row_default_height: 50
+
+        Label:
+            size_hint_y: 0.1
+            font_size: self.height * 0.3
+            font_name: 'nirmalab.ttf'
+            text: "Weight cell User Interface"

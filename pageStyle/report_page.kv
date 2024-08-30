@@ -1,0 +1,248 @@
+<ReportWindow>:
+    name: 'report_page'
+
+    side_sel_grid: side_sel_grid
+    text_in_grid: text_in_grid
+
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: (44/255, 112/255, 222/255, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            size_hint_y: 0.1
+            cols: 3
+            padding: 3
+            Image:
+                size_hint_x: 0.1
+                source: 'pageStyle/icon_2/logo-2.png'
+            Label:
+                text: 'Welcome'
+                font_name: 'nirmalab.ttf'
+                font_size: self.height * 0.5
+            Button:
+                size_hint_x: 0.1
+                id: header_logout_button
+                background_normal: ''
+                background_color: (44/255, 112/255, 222/255, 1)
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = "login_page"
+                    root.manager.transition.direction = "right"
+                    root.manager.page_focus()
+                Image:
+                    source: 'pageStyle/icon_2/logout.png'
+                    y: self.parent.y + self.parent.height/20
+                    x: self.parent.x + self.parent.width/20 + self.parent.width * 0.1
+                    size: self.parent.width * 0.8, self.parent.height * 0.8
+
+        GridLayout:
+            cols: 2
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            SelectableGrid:
+                id: side_sel_grid
+                focus: False
+                cols: 1
+                size_hint_x: 0.2
+                padding: 5
+                Button:
+                    id: search_button
+                    font_name: "nirmala.ttf"
+                    text: "Search"
+                    font_size: self.height * 0.18
+                    on_release:
+                        root.search()
+                    Image:
+                        source: 'pageStyle/icon_2/search.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: print_button
+                    font_name: "nirmala.ttf"
+                    text: "Print"
+                    font_size: self.height * 0.18
+                    on_release:
+                        root.print_record()
+                    Image:
+                        source: 'pageStyle/icon_2/printer-1.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: st_weight_cancel_button
+                    font_name: "nirmala.ttf"
+                    text: "Clear"
+                    font_size: self.height * 0.18
+                    on_release:
+                        root.clear_record()
+                    Image:
+                        source: 'pageStyle/icon_2/clear.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: st_pg_back_button
+                    font_name: "nirmala.ttf"
+                    text: "Back"
+                    font_size: self.height * 0.18
+                    on_release:
+                        root.manager.transition.direction = "right"
+                        app.root.current = "main_page"
+                        root.manager.transition.direction = "left"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/back.png'
+                        y: self.parent.y - 10
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+
+            GridLayout:
+                cols: 1
+                padding: 20
+                spacing: 5
+                Label:
+                    text: 'Reports'
+                    font_name: 'nirmala.ttf'
+                    font_size: self.height * 0.7
+                    color: 0, 0, 0, 1
+                    size_hint_y:0.1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 0.5
+                        Rectangle:
+                            pos: self.pos
+                            size: self.parent.width - 40, 2
+
+                GridLayout:
+                    cols: 2
+                    id: search_screen
+                    GridLayout:
+                        id: text_in_grid
+                        focus: False
+                        cols: 2
+                        spacing: 5
+                        padding: 10
+                        canvas.before:
+                            Color:
+                                rgba: (120/255, 13/255, 33/255, 1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: ticket_label
+                            text: 'Ticket No'
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: ticket_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.4
+                            on_text_validate:
+                                root.ids.vehicle_text.focus = True if self.opacity else False
+                        Label:
+                            id: vehicle_label
+                            text: 'Vehicle No'
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: vehicle_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.4
+                            on_text_validate:
+                                root.ids.customer_text.focus = True if self.opacity else False
+                        Label:
+                            id: customer_label
+                            text: 'Customer'
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: customer_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.4
+                            on_text_validate:
+                                root.ids.plant_text.focus = True if self.opacity else False
+                        Label:
+                            id: plant_label
+                            text: 'Plant No'
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: plant_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.4
+                            on_text_validate:
+                                root.ids.driver_text.focus = True if self.opacity else False
+                        Label:
+                            id: driver_label
+                            text: "Driver's Name"
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: driver_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.4
+                            on_text_validate:
+                                root.ids.operator_text.focus = True if self.opacity else False
+                        Label:
+                            id: operator_label
+                            text: "Operator's Name"
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: operator_text
+                            multiline: False
+                            background_color: (247/255, 240/255, 188/255,1) if self.focus else (1,1,1,1)
+                            font_size: self.height * 0.4
+                            on_text_validate:
+                                root.ids.from_date_text.focus = True if self.opacity else False
+                                root.clear_event = False if self.opacity else True
+                        Label:
+                            id: from_date_label
+                            text: 'From Date'
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: from_date_text
+                            pHint: 0.5,0.5
+                            pTitle: 'From Date'
+                            font_size: self.height * 0.4
+                            size_hint_x: .4
+                            on_text_validate:
+                                root.ids.to_date_text.focus = True
+                        Label:
+                            id: to_date_label
+                            text: 'To Date'
+                            font_size: self.height * 0.4
+                        TextInput:
+                            id: to_date_text
+                            pHint: 0.5,0.5
+                            pTitle: 'To Date'
+                            font_size: self.height * 0.4
+                            size_hint_x: .4
+                            on_text_validate:
+                                root.ids.side_sel_grid.focus = True 
+
+                    GridLayout:
+                        cols:1
+                        spacing: 5
+                        padding: 5
+                        ScrollView:
+                            id: search_result_text
+                            bar_color: 0,0,0,1
+                            bar_pos_y: 'left'
+                            bar_width: 10
+                            smooth_scroll_end: 200
+
+        Label:
+            size_hint_y: 0.1
+            font_size: self.height * 0.3
+            font_name: 'nirmalab.ttf'
+            text: "Weight cell User Interface"

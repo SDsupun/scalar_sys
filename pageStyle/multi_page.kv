@@ -1,0 +1,260 @@
+<MultiWindow>:
+    name: 'multi_page'
+
+    side_sel_grid: side_sel_grid
+    text_in_grid: text_in_grid
+
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: (44/255, 112/255, 222/255, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            size_hint_y: 0.1
+            cols: 3
+            padding: 3
+            Image:
+                size_hint_x: 0.1
+                source: 'pageStyle/icon_2/logo-2.png'
+            Label:
+                text: 'Welcome'
+                font_name: 'nirmalab.ttf'
+                font_size: self.height * 0.5
+            Button:
+                size_hint_x: 0.1
+                id: header_logout_button
+                background_normal: ''
+                background_color: (44/255, 112/255, 222/255, 1)
+                on_release:
+                    root.manager.transition.direction = "left"
+                    app.root.current = "login_page"
+                    root.manager.transition.direction = "right"
+                    root.manager.page_focus()
+                Image:
+                    source: 'pageStyle/icon_2/logout.png'
+                    y: self.parent.y + self.parent.height/20
+                    x: self.parent.x + self.parent.width/20 + self.parent.width * 0.1
+                    size: self.parent.width * 0.8, self.parent.height * 0.8
+
+        GridLayout:
+            cols: 2
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            SelectableGrid:
+                id: side_sel_grid
+                focus: False
+                cols: 1
+                size_hint_x: 0.2
+                padding: 5
+                Button:
+                    id: print_n_save_button
+                    font_name: "nirmala.ttf"
+                    text: "Print & Save"
+                    font_size: self.height * 0.18
+                    Image:
+                        source: 'pageStyle/icon_2/printer-2.png'
+                        y: self.parent.y + self.parent.height/20
+                        x: self.parent.x + self.parent.width/2 -22
+                        size: 45, 45
+                Button:
+                    id: save_only_button
+                    font_name: "nirmala.ttf"
+                    text: "Save"
+                    font_size: self.height * 0.18
+                    Image:
+                        source: 'pageStyle/icon_2/save.png'
+                        y: self.parent.y + self.parent.height/20
+                        x: self.parent.x + self.parent.width/2 -22
+                        size: 45, 45
+                Button:
+                    id: st_weight_cancel_button
+                    font_name: "nirmala.ttf"
+                    text: "Clear"
+                    font_size: self.height * 0.18
+                    on_release:
+                        root.ids.vehicle_text.text = ''
+                        root.ids.ticket_text.text = ''
+                        root.ids.datetime_text.text = ''
+                        root.ids.customer_text.text = ''
+                        root.ids.product_text.text = ''
+                        root.ids.plant_text.text = ''
+                        root.ids.driver_text.text = ''
+                        root.ids.operator_text.text = ''
+                        root.ids.weight_text.text = ''
+                        root.ids.cx1_text.text = ''
+                        root.ids.cx2_text.text = ''
+                    Image:
+                        source: 'pageStyle/icon_2/clear.png'
+                        y: self.parent.y + self.parent.height/20
+                        x: self.parent.x + self.parent.width/2 -22
+                        size: 45, 45
+                Button:
+                    id: st_pg_back_button
+                    font_name: "nirmala.ttf"
+                    text: "Back"
+                    font_size: self.height * 0.18
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.root.current = "main_page"
+                        root.manager.transition.direction = "right"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/back.png'
+                        y: self.parent.y + self.parent.height/20
+                        x: self.parent.x + self.parent.width/2 -22
+                        size: 45, 45
+
+            GridLayout:
+                cols: 1
+                padding: 20
+                spacing: 5
+                Label:
+                    text: 'Multi Weight'
+                    font_name: 'nirmala.ttf'
+                    font_size: self.height * 0.7
+                    color: 0, 0, 0, 1
+                    size_hint_y:0.1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 0.5
+                        Rectangle:
+                            pos: self.pos
+                            size: self.parent.width - 40, 2
+
+                GridLayout:
+                    cols: 2
+                    GridLayout:
+                        id: text_in_grid
+                        focus: False
+                        cols: 2
+                        spacing: 5
+                        padding: 10
+                        canvas.before:
+                            Color:
+                                rgba: (72/255, 20/255, 128/255, 1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            text: 'Vehicle No'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: vehicle_text
+                            multiline: False
+                            font_size: self.height * 0.6
+                            on_text_validate:
+                                root.ids.customer_text.focus = True
+                        Label:
+                            text: 'Ticket No'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: ticket_text
+                            text: '412547'
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Time'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: datetime_text
+                            text: '2021/03/01 5:14 PM'
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Customer'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: customer_text
+                            multiline: False
+                            font_size: self.height * 0.6
+                            on_text_validate:
+                                root.ids.product_text.focus = True
+                        Label:
+                            text: 'Product'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: product_text
+                            multiline: False
+                            font_size: self.height * 0.6
+                            on_text_validate:
+                                root.ids.plant_text.focus = True
+                        Label:
+                            text: 'Plant No'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: plant_text
+                            multiline: False
+                            font_size: self.height * 0.6
+                            on_text_validate:
+                                root.ids.driver_text.focus = True
+                        Label:
+                            text: "Driver's Name"
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: driver_text
+                            multiline: False
+                            font_size: self.height * 0.6
+                            on_text_validate:
+                                root.ids.operator_text.focus = True
+                        Label:
+                            text: 'Operator Name'
+                            font_size: self.height * 0.6
+                        TextInput:
+                            id: operator_text
+                            multiline: False
+                            font_size: self.height * 0.6
+                            on_text_validate:
+                                root.ids.cx1_text.focus = True if (root.ids.cx1_text.opacity == 1) else False
+                                root.ids.side_sel_grid.focus = True if (root.ids.cx1_text.opacity == 0) else False
+                        Label:
+                            text: 'Weight'
+                            font_size: self.height * 0.6
+                        Label:
+                            text: '100.0 kg'
+                            font_size: self.height * 0.6
+                        Label:
+                            text: 'Custom1'
+                            font_size: self.height * 0.6
+                            opacity: 0
+                        TextInput:
+                            id: cx1_text
+                            text: 'cx1'
+                            font_size: self.height * 0.6
+                            opacity: 0
+                            multiline: False
+                            on_text_validate:
+                                root.ids.cx2_text.focus = True if (root.ids.cx2_text.opacity == 1) else False
+                                root.ids.side_sel_grid.focus = True if (root.ids.cx2_text.opacity == 0) else False
+                        Label:
+                            text: 'Custom2'
+                            font_size: self.height * 0.6
+                            opacity: 0
+                        TextInput:
+                            id: cx2_text
+                            text: 'cx2'
+                            font_size: self.height * 0.6
+                            opacity: 0
+                            multiline: False
+                            on_text_validate:
+                                root.ids.side_sel_grid.focus = True
+                        Label:
+                            text: 'Weight'
+                            font_size: self.height * 0.6
+                        Label:
+                            id: weight_text
+                            text: '50.0 kb'
+                            font_size: self.height * 0.6
+
+                    Label:
+                        text: '<lookup values>'
+                        color: 0,0,0,1
+        Label:
+            size_hint_y: 0.1
+            text: "company.ltd"
+            font_size: self.height * 0.3

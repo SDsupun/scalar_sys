@@ -1,0 +1,245 @@
+#:include force pageStyle/round_button.kv
+
+<MainWindow>:
+    name: 'main_page'
+
+    main_sel_grid: main_sel_grid
+    side_sel_grid: side_sel_grid
+
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: (44/255, 112/255, 222/255, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            size_hint_y: 0.1
+            cols: 3
+            padding: 3
+            Image:
+                size_hint_x: 0.1
+                source: 'pageStyle/icon_2/logo-2.png'
+            Label:
+                text: 'Welcome'
+                font_size: self.height * 0.5
+                font_name: 'nirmalab.ttf'
+
+        GridLayout:
+            cols: 2
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            SelectableGrid:
+                id: side_sel_grid
+                focus: False
+                cols: 1
+                size_hint_x: 0.2
+                padding: 5
+                Button:
+                    id: main_report_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Reports"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.root.current = "report_page"
+                        root.manager.transition.direction = "right"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/report-2.png'
+                        y: self.parent.y - 15
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: main_print_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Print"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.root.current = "print_page"
+                        root.manager.transition.direction = "right"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/printer-1.png'
+                        y: self.parent.y - 15
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: main_setting_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Settings"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.root.current = "profile_setting_page"
+                        root.manager.transition.direction = "right"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/settings.png'
+                        y: self.parent.y - 15
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+                Button:
+                    id: main_logout_button
+                    font_name: "nirmala.ttf"
+                    font_size: self.height * 0.18
+                    text: "Logout"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.root.current = "login_page"
+                        root.manager.transition.direction = "right"
+                        root.manager.page_focus()
+                    Image:
+                        source: 'pageStyle/icon_2/logout.png'
+                        y: self.parent.y - 15
+                        x: self.parent.x + self.parent.width/2 -40
+                        size: 120, 120
+
+            GridLayout:
+                cols: 1
+                padding: 20
+                spacing: 10
+                Label:
+                    text: 'Main Menu'
+                    font_size: self.height * 0.7
+                    font_name: 'nirmala.ttf'
+                    color: 0, 0, 0, 1
+                    size_hint_y:0.1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 0.5
+                        Rectangle:
+                            pos: self.pos
+                            size: self.parent.width - 40, 2
+
+                GridLayout:
+                    cols: 4
+                    size_hint_y: 0.2
+                    focus: False
+                    spacing: 5
+                    padding: 10
+                    canvas.before:
+                        Color:
+                            rgba: (13/255, 120/255, 33/255, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        id: first_count_top_text
+                        text: "0"
+                        font_size: self.height * 0.35
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                    Label:
+                        id: second_count_top_text
+                        text: "0"
+                        font_size: self.height * 0.35
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                    Label:
+                        id: date_time_top_text
+                        text: "2020"
+                        font_size: self.height * 0.3
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.33
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                    Label:
+                        id: weight_top_text
+                        text: "45 kg"
+                        font_size: self.height * 0.7
+                        font_name: "nirmalab.ttf"
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 0.3
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+
+                SelectableGrid:
+                    id: main_sel_grid
+                    focus: False
+                    cols: 1
+
+                    Button:
+                        id: st_weight_button
+                        size_hint_y:0.2
+                        font_name: "nirmala.ttf"
+                        font_size: self.height * 0.22
+                        text: "First Weight"
+                        on_release:
+                            root.manager.transition.direction = "right"
+                            app.root.current = "first_page"
+                            root.manager.page_focus()
+                            root.manager.transition.direction = "left"
+                        Image:
+                            source: 'pageStyle/icon_2/first_icon.png'
+                            y: self.parent.y + self.parent.height/2 - 125
+                            x: self.parent.x + self.parent.width/10 -50
+                            size: 250, 250
+
+                    Button:
+                        id: nd_weight_button
+                        size_hint_y:0.2
+                        font_name: "nirmala.ttf"
+                        font_size: self.height * 0.22
+                        text: "Second Weight"
+                        on_release:
+                            root.manager.transition.direction = "right"
+                            app.root.current = "second_page"
+                            root.manager.page_focus()
+                            root.manager.transition.direction = "left"
+                        Image:
+                            source: 'pageStyle/icon_2/second_icon.png'
+                            y: self.parent.y + self.parent.height/2 - 125
+                            x: self.parent.x + self.parent.width/10 -50
+                            size: 250, 250
+
+#                    Button:
+#                        id: mt_weight_button
+#                        size_hint_y:0.2
+#                        font_name: "nirmala.ttf"
+#                        font_size: self.height * 0.22
+#                        text: "Multi Weight"
+#                        on_release:
+#                            root.manager.transition.direction = "right"
+#                            app.root.current = "multi_page"
+#                            root.manager.page_focus()
+#                            root.manager.transition.direction = "left"
+#                        Image:
+#                            source: 'pageStyle/icon_2/m_icon.png'
+#                            y: self.parent.y + self.parent.height/2 -50
+#                            x: self.parent.x + self.parent.width/10 -50
+#                            size: 100, 100
+
+        Label:
+            size_hint_y: 0.1
+            font_size: self.height * 0.3
+            font_name: 'nirmalab.ttf'
+            text: "Weight cell User Interface"
+
+
+

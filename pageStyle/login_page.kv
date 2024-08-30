@@ -1,0 +1,95 @@
+#:import get_mac uuid.getnode
+
+<LoginWindow>:
+    name: 'login_page'
+    passwd: passwd
+    login_button: login_button
+    idm: get_mac()
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        pos_hint: {'x': 0.45, 'y': 0.5}
+        size_hint: 0.4, 0.4
+        canvas.before:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                size: 200, 200
+                source: 'pageStyle/icon_2/logo.png'
+#        Image:
+#            source: 'atlas://icon/png/icon_1/003-warning'
+
+    FloatLayout:
+        pos_hint: {'x': 0.05, 'y': 0.05}
+        size_hint: 0.9, 0.4
+        padding:3
+        canvas.before:
+            Color:
+                rgba: 165/255, 23/255, 212/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [20]
+
+        GridLayout:
+            size_hint: 0.99, 0.9
+            cols:1
+            padding: 40
+            pos_hint: {'x': 0.01, 'y': 0}
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.5
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20]
+            Label:
+                focus: False
+                size_hint_y: 0.3
+                text: "Enter Password"
+                font_size: self.parent.height * 0.3
+                font_name: "nirmalab.ttf"
+
+            FloatLayout:
+                GridLayout:
+                    cols: 2
+                    orientation: "tb-lr"
+                    size_hint: 0.7, 0.45
+                    pos_hint: {'x': 0.15, 'y': 0}
+                    canvas:
+                        Color:
+                            rgba: 0,0,0,0.6
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    TextInput:
+                        id: passwd
+                        focus : True
+                        font_size: self.parent.height * 0.8
+                        multiline: False
+                        password: True
+                        on_text_validate:
+                            root.manager.transition.direction = "left"
+                            app.root.current = "main_page" if root.check_passwd() else "login_page"
+                            root.passwd.text = ""
+
+                    Button:
+                        id: login_button
+                        spacing: 5
+                        size_hint_x: 0.1
+                        focus: False
+                        on_release:
+                            root.manager.transition.direction = "left"
+                            app.root.current = "main_page" if root.check_passwd() else "login_page"
+                            root.passwd.text = ""
+                        Image:
+                            source: 'pageStyle/icon_2/login.png'
+                            y: self.parent.y + self.parent.height/10
+                            x: self.parent.x + self.parent.width/10
+                            size: self.parent.height * 0.8, self.parent.width * 0.8
+
