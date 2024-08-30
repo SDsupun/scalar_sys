@@ -13,7 +13,7 @@ page functionality.
 
 The system was tested and run in Raspberry Pi 4 hardware. 
 
-<video src="./tharadi-demo.mp4" width="320" height="240" controls></video>
+<video src="tharadi-demo.mp4" width="320" height="240" controls></video>
 
 ## Dependancies
 
